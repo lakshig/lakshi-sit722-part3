@@ -1,6 +1,6 @@
 # Your Solution
 FROM python:3.9-slim
-WORKDIR /inventory-management
+WORKDIR /inventory_management
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .

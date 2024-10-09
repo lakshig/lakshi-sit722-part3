@@ -2,9 +2,9 @@
 version: '3'
 services:
   book_catalog:
-    image: book-catalog:v1
+    image: 7p2sit722.azurecr.io/book_catalog:latest
     build:
-      context: ./book-catalog
+      context: ./book_catalog
       dockerfile: Dockerfile
     container_name: book-catalog
     platform: linux/amd64
@@ -14,9 +14,9 @@ services:
     - DATABASE_URL=postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04
 
   inventory_management:
-    image: inventory-management:v1
+    image: 7p2sit722.azurecr.io/inventory_management:latest
     build:
-      context: ./inventory-management
+      context: ./inventory_management
       dockerfile: Dockerfile
     container_name: inventory-management
     platform: linux/amd64
