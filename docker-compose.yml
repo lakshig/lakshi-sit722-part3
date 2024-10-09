@@ -1,5 +1,4 @@
 # Your Solution
-version: '3'
 services:
   book_catalog:
     image: 7p2sit722.azurecr.io/book_catalog:latest
@@ -11,7 +10,7 @@ services:
     ports:
     - "8000:8000"
     environment: 
-    - DATABASE_URL=postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04
+    - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
 
   inventory_management:
     image: 7p2sit722.azurecr.io/inventory_management:latest
@@ -23,4 +22,4 @@ services:
     ports:
       - "8001:8001"
     environment: 
-     - DATABASE_URL=postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04
+     - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx

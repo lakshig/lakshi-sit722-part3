@@ -20,7 +20,7 @@ spec:
           - containerPort: 8000
         env:
         - name: DATABASE_URL
-          value: "postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04"
+          value: "postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -43,7 +43,7 @@ spec:
           - containerPort: 8001
         env:
         - name: DATABASE_URL
-          value: "postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04"
+          value: "postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx"
 ---
 apiVersion: v1
 kind: Service
