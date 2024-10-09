@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: book-catalog
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: book-catalog
@@ -15,23 +15,58 @@ spec:
     spec:
       containers: 
       - name: book-catalog
-        image: book-catalog:latest
-        imagePullPolicy: Never
+        image: book-catalog:v1
+        ports:
+          - containerPort: 8000
         env:
-        - name: PORT
-          value: "8000"    
-    
+        - name: DATABASE_URL
+          value: "postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory_management
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventory_management
+  template:
+    metadata:
+      labels:
+        app: inventory_management
+    spec:
+      containers: 
+      - name: inventory_management
+        image: inventory_management:v1
+        ports:
+          - containerPort: 8001
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: book-catalog
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: book-catalog
   ports:
     - protocol: TCP
-      port: 80
+      port: 8000
       targetPort: 8000
-      nodePort: 30001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory_management
+spec:
+  type: LoadBalancer
+  selector:
+    app: inventory_management
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001 

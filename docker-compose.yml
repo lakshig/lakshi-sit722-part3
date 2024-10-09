@@ -11,7 +11,7 @@ services:
     ports:
     - "8000:8000"
     environment: 
-    - DATABASE_URL=
+    - DATABASE_URL=postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04
 
   inventory_management:
     image: inventory_management:1
@@ -23,4 +23,4 @@ services:
     ports:
       - "8001:8001"
     environment: 
-     - DATABASE_URL=
+     - DATABASE_URL=postgresql://sit722_7_2p_5w04_user:DfYz0iMBvwTwxUltA6XVgL0fcm2wBlyd@dpg-cs37lud6l47c73ebb9b0-a.oregon-postgres.render.com/sit722_7_2p_5w04
