@@ -25,20 +25,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inventory_management
+  name: inventory-management
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: inventory_management
+      app: inventory-management
   template:
     metadata:
       labels:
-        app: inventory_management
+        app: inventory-management
     spec:
       containers: 
-      - name: inventory_management
-        image: inventory_management:v1
+      - name: inventory-management
+        image: inventory-management:v1
         ports:
           - containerPort: 8001
         env:
@@ -61,11 +61,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: inventory_management
+  name: inventory-management
 spec:
   type: LoadBalancer
   selector:
-    app: inventory_management
+    app: inventory-management
   ports:
     - protocol: TCP
       port: 8001
