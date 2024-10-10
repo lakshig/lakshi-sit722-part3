@@ -1,7 +1,7 @@
 # Your Solution
 services:
   book_catalog:
-    image: 7p2sit722.azurecr.io/book_catalog:latest
+    image: 7p2sit722.azurecr.io/book_catalog:1
     build:
       context: ./book_catalog
       dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
     - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
 
   inventory_management:
-    image: 7p2sit722.azurecr.io/inventory_management:latest
+    image: 7p2sit722.azurecr.io/inventory_management:1
     build:
       context: ./inventory_management
       dockerfile: Dockerfile

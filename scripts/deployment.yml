@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: book-catalog
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: book-catalog
@@ -15,19 +15,33 @@ spec:
     spec:
       containers: 
       - name: book-catalog
-        image: 7p2sit722.azurecr.io/book-catalog:latest
+        image: 7p2sit722.azurecr.io/book-catalog:1
         ports:
           - containerPort: 8000
         env:
         - name: DATABASE_URL
           value: "postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx"
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-catalog
+spec:
+  type: NodePort
+  selector:
+    app: book-catalog
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      NodePort: 30002
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: inventory-management
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: inventory-management
@@ -48,25 +62,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: book-catalog
-spec:
-  type: LoadBalancer
-  selector:
-    app: book-catalog
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
----
-apiVersion: v1
-kind: Service
-metadata:
   name: inventory-management
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: inventory-management
   ports:
     - protocol: TCP
       port: 8001
       targetPort: 8001 
+      NodePort: 30002
