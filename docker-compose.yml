@@ -10,7 +10,7 @@ services:
     ports:
     - "8000:8000"
     environment: 
-    - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+    - SQLALCHEMY_DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
 
   inventory_management:
     image: 7p2sit722.azurecr.io/inventory_management:1
@@ -22,4 +22,4 @@ services:
     ports:
       - "8001:8001"
     environment: 
-     - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+     - SQLALCHEMY_DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
