@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: book-catalog
+  name: book-catalog-deployment
 spec:
   replicas: 1
   selector:
@@ -13,33 +13,21 @@ spec:
       labels:
         app: book-catalog
     spec:
-      containers: 
+      containers:
       - name: book-catalog
-        image: 7p2sit722.azurecr.io/book-catalog:1
+        image: 7p2sit722.azurecr.io/book_catalog:latest
         ports:
-          - containerPort: 8000
+        - containerPort: 8000
         env:
         - name: DATABASE_URL
           value: "postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx"
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: book-catalog
-spec:
-  type: NodePort
-  selector:
-    app: book-catalog
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
-      NodePort: 30002
----
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inventory-management
+  name: inventory-management-deployment
 spec:
   replicas: 1
   selector:
@@ -50,25 +38,41 @@ spec:
       labels:
         app: inventory-management
     spec:
-      containers: 
+      containers:
       - name: inventory-management
-        image: 7p2sit722.azurecr.io/inventory-management:latest
+        image: 7p2sit722.azurecr.io/inventory_management:latest
         ports:
-          - containerPort: 8001
+        - containerPort: 8000
         env:
         - name: DATABASE_URL
           value: "postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx"
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: inventory-management
+  name: book-catalog-service
 spec:
-  type: NodePort
+  selector:
+    app: book-catalog
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-management-service
+spec:
   selector:
     app: inventory-management
   ports:
     - protocol: TCP
-      port: 8001
-      targetPort: 8001 
-      NodePort: 30002
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer

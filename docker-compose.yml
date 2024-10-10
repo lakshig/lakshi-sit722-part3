@@ -1,25 +1,44 @@
-# Your Solution
+version: '3'
+
 services:
+
+  postgres:
+    image: postgres:13
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: sit722_7_2p_ilyx_user
+      POSTGRES_PASSWORD: 8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po
+      POSTGRES_DB: sit722_7_2p_ilyx
+    restart: always
+
   book_catalog:
-    image: 7p2sit722.azurecr.io/book_catalog:1
     build:
       context: ./book_catalog
       dockerfile: Dockerfile
+    image: 7p2sit722.azurecr.io/book_catalog:latest
     container_name: book-catalog
-    platform: linux/amd64
     ports:
-    - "8000:8000"
-    environment: 
-    - SQLALCHEMY_DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+    depends_on:
+      - postgres
+    restart: "no"
+    platform: linux/amd64
 
   inventory_management:
-    image: 7p2sit722.azurecr.io/inventory_management:1
     build:
       context: ./inventory_management
       dockerfile: Dockerfile
+    image: 7p2sit722.azurecr.io/inventory_management:latest
     container_name: inventory-management
-    platform: linux/amd64
     ports:
-      - "8001:8001"
-    environment: 
-     - SQLALCHEMY_DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://sit722_7_2p_ilyx_user:8CXeZzKDZuLbjDOqKHrGf1bofQJ5d8po@dpg-cs3hd53v2p9s73eftnt0-a.oregon-postgres.render.com/sit722_7_2p_ilyx
+    depends_on:
+      - postgres
+    restart: "no"
+    platform: linux/amd64
